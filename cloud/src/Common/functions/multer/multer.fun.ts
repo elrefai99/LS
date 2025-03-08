@@ -5,12 +5,16 @@ import path from "path";
 function destination(req: Request, _file: any, callback: any) {
   const { baseUrl } = req;
   const isUser = baseUrl === "/api/user";
+  const isVedio = baseUrl === "/api/video";
 
   const folderPath = path.join(__dirname, "../../../../cdn",
     isUser ?
       "user"
       :
-      ""
+      isVedio ?
+        "video"
+        :
+        ""
   );
 
   callback(null, folderPath);
@@ -36,3 +40,7 @@ const multerStorage = multer.diskStorage({
 export const uploadAvatar: any = multer({
   storage: multerStorage,
 }).single("img");
+
+export const uploadVideo: any = multer({
+  storage: multerStorage,
+}).single("video");
