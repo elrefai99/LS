@@ -2,10 +2,13 @@ import "dotenv/config"
 import express, { Application, Request, Response } from 'express'
 import { connectToDatabase } from './Database/PostgreSQL'
 import setupUtils from './utils/setup.utils'
+import appModule from "./app.module"
 
 const app: Application = express()
 
 setupUtils(app)
+
+appModule(app)
 
 app.use('*', async (_req: Request, res: Response) => {
   res.status(404).send('This is not the API route you are looking for')
