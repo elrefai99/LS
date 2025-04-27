@@ -76,6 +76,10 @@ export const userSchema = new Schema<IUser>({
           type: [Schema.Types.ObjectId],
           ref: "User",
      },
+     refreshToken: {
+          type: String,
+          default: "",
+     },
 }, {
      timestamps: true,
      autoIndex: true,
