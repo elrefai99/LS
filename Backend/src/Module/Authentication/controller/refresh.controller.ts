@@ -15,7 +15,7 @@ export const refreshController = asyncHandler(
              return
           }
 
-          if( !cookie.__srmt){
+          if(!cookie.__srmt){
                jwt.verify(cookie.__ssdt, REFRESH_TOKEN_SECRET, async (err: any, decoded: any): Promise<any> => {
                  if (err){
                     next (new ApiError("Refrsh token is not valid, please sign in again", 401));
