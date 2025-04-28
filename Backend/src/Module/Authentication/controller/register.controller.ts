@@ -7,6 +7,7 @@ import ApiError from "../../../Utils/api.errors.utils";
 import bcrypt, { genSalt } from 'bcryptjs'
 import { accountToken } from "../../../Utils/Guards/JWT/token.jwt";
 import { refreshToken } from "../../../Utils/Guards/JWT/refresh.jwt";
+import { uploadAuthAvatar } from "../../../Common/Pipes/cloud.pipe";
 
 export const registerController =[
      validationMiddleware(registerDTO),
@@ -18,7 +19,7 @@ export const registerController =[
                const cUser = await UserModel.findOne({status: "active", email: email }, {
                     _id: 1,
                });
-
+               const avatar = await uploadAuthAvatar(fullname);
                if (cUser) {
                     next(new ApiError("Email already exists", 400));
                     return
@@ -34,6 +35,7 @@ export const registerController =[
                     email,
                     password: hashedPassword,
                     code,
+                    avatar: avatar.link,
                     phone,
                     username,
                })

@@ -13,3 +13,12 @@ export async function uploadAvatar(filePath: any, carNumber: any) {
     console.error('Error uploading image:', error);
   }
 }
+
+export async function uploadAuthAvatar(username: any) {
+  try {
+    const response = await axios.post(`${process.env.CLOUD_URL as string}/ls/main/connect/auth`, { username });
+    return response.data
+  } catch (error) {
+    console.error('Error uploading image:', error);
+  }
+}
