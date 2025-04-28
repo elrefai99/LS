@@ -10,7 +10,7 @@ export const avatarFun = async (imgName: any, userID: any) => {
 
   const watermark = sharp(await readFile(path.join(basePath, imgName)))
     .resize({ width: 450, height: 450 })
-    .webp({ quality: 50 })
+    .webp({ quality: 90 })
     .toBuffer();
 
   fs.unlink(path.join(basePath, imgName), (err) => {

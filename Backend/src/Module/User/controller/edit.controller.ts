@@ -19,17 +19,15 @@ export const editController = asyncHandler(
                     for (let i = 0; i < req.files['img'].length; i++) {
                          if (req.files['img'][i] && req.files['img'][i].path) {
                              image = await uploadAvatar(req.files['img'][i].path, req.user.id)
-                             // Delete image from the server
                              fs.remove(req.files['img'][i].path, (err: any) => {
                                  if (err) throw err
                              })
                          }
                      }
+                    data.avatar = image.avatar
                }
-
                await UserModel.findByIdAndUpdate(id, {
                     $set: {
-                         avatar: image.avatar,
                          ...data
                     }
                },{new: true})
