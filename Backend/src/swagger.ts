@@ -12,15 +12,7 @@ const options: swaggerJsdoc.Options = {
     },
     servers: [
       {
-        url: "https://admin.lesoll-demo.site/",
-        description: "Live URL",
-      },
-      {
-        url: "http://ec2-3-227-150-208.compute-1.amazonaws.com:7000/",
-        description: "PBE URL",
-      },
-      {
-        url: "http://localhost:7000/",
+        url: "http://localhost:8000/",
         description: "Local URL",
       },
     ],
