@@ -57,7 +57,7 @@ export const userSchema = new Schema<IUser>({
      },
      status: {
           type: String,
-          enum: ['active', 'deleted', 'pending', 'blocked', 'ban'],
+          enum: ['active', 'deleted', 'pending', 'blocked', 'ban', 'disable'],
           default: 'active',
      },
      lastSeen: {
