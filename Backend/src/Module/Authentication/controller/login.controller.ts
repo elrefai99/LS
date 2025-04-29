@@ -37,8 +37,8 @@ export const LoginController =[
                const refresh = refreshToken(cUser?._id);
                // user.refreshToken = refresh;
                // res.cookie()
-               res.cookie("__ssdt", refresh, { httpOnly: true, secure: true, sameSite: "none", maxAge: 1000 * 60 * 60 * 24 * 7, }); // refresh token with 7 days expiration
-               res.cookie("__srmt", token, { httpOnly: true, secure: true, sameSite: "none",maxAge: 1000 * 60 * 30}); // access token with 30 minutes expiration
+               res.cookie("__ssdt", refresh, { httpOnly: true, secure: process.env.NODE_ENV === 'production', sameSite: "lax", maxAge: 1000 * 60 * 60 * 24 * 7, }); // refresh token with 7 days expiration
+               res.cookie("__srmt", token, { httpOnly: true, secure: process.env.NODE_ENV === 'production', sameSite: "lax",maxAge: 1000 * 60 * 30}); // access token with 30 minutes expiration
 
                res.status(200).json({code: 200, status: "OK", message: "User successfully Login"})
           }
