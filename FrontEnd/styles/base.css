@@ -1,0 +1,16 @@
+html,
+body {
+  height: 100vh;
+  overflow: hidden;
+  --uno: bg-base font-sans;
+  background: #202020;
+  color: #e8e8e8e8
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+* {
+  min-width: 0;
+}
