@@ -9,14 +9,14 @@ import { accountToken } from "../../../Utils/Guards/JWT/token.jwt";
 import { refreshToken } from "../../../Utils/Guards/JWT/refresh.jwt";
 import { uploadAuthAvatar } from "../../../Common/Pipes/cloud.pipe";
 
-export const registerController =[
+export const registerController = [
      validationMiddleware(registerDTO),
      asyncHandler(
           async (req: Request, res: Response, next: NextFunction) => {
                const { fullname, email, password, code, phone } = req.body as registerDTO;
-          
+
                // Check if the user already exists
-               const cUser = await UserModel.findOne({status: "active", email: email }, {
+               const cUser = await UserModel.findOne({ status: "active", email: email }, {
                     _id: 1,
                });
                const avatar = await uploadAuthAvatar(fullname);
@@ -40,15 +40,15 @@ export const registerController =[
                     username,
                })
 
-               const token = accountToken(user._id);
+               const token = accountToken(user._id, user.tokenVersion);
                const refresh = refreshToken(user._id);
                user.refreshToken = refresh;
                await user.save();
                // res.cookie()
                res.cookie("__ssdt", refresh, { httpOnly: true, secure: true, sameSite: "none", maxAge: 1000 * 60 * 60 * 24 * 7, }); // refresh token with 7 days expiration
-               res.cookie("__srmt", token, { httpOnly: true, secure: true, sameSite: "none",maxAge: 1000 * 60 * 30}); // access token with 30 minutes expiration
+               res.cookie("__srmt", token, { httpOnly: true, secure: true, sameSite: "none", maxAge: 1000 * 60 * 30 }); // access token with 30 minutes expiration
 
-               res.status(201).json({code: 201, status: "Created", message: "User created successfully"})
+               res.status(201).json({ code: 201, status: "Created", message: "User created successfully" })
           }
      )
 ] 

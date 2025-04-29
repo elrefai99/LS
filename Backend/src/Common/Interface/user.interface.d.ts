@@ -16,4 +16,5 @@ export interface IUser {
      friends: Types.ObjectId[];
      block: Types.ObjectId[];
      refreshToken: string;
+     tokenVersion: number;
 }

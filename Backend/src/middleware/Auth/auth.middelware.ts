@@ -30,23 +30,24 @@ export const isAuthenticationStatus = async (req: RequestAuthentication | any, _
       }
 
       const user = await UserModel.findOne({ _id: decoded._id, status: "active" }, {
-          refreshToken: 0,
-          password: 0,
-          __v: 0,
-          lastSeen: 0,
-          verfiy: 0,
-          isOnline: 0,
-          notification: 0,
-          friends: 0,
+        refreshToken: 0,
+        password: 0,
+        __v: 0,
+        lastSeen: 0,
+        verfiy: 0,
+        isOnline: 0,
+        notification: 0,
+        friends: 0,
       });
-      if (user) {
+      console.log(user?.tokenVersion === decoded.vToken, user?.tokenVersion, decoded.vToken)
+      if (user && user?.tokenVersion === decoded?.vToken) {
         req.user = user;
         next();
       }
       else {
         next(new ApiError("Can't find user by token, Please log in again", 401));
         return;
-     }
+      }
     });
   } else {
     next(new ApiError("Invalid Token", 401));

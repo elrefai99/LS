@@ -80,6 +80,10 @@ export const userSchema = new Schema<IUser>({
           type: String,
           default: "",
      },
+     tokenVersion: {
+          type: Number,
+          default: 0
+     }
 }, {
      timestamps: true,
      autoIndex: true,
