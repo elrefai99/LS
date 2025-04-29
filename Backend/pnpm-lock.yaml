@@ -38,9 +38,6 @@ importers:
       express-session:
         specifier: ^1.18.1
         version: 1.18.1
-      express-useragent:
-        specifier: ^1.0.15
-        version: 1.0.15
       express-validator:
         specifier: ^7.2.1
         version: 7.2.1
@@ -83,9 +80,6 @@ importers:
       request:
         specifier: ^2.88.2
         version: 2.88.2
-      request-ip:
-        specifier: ^3.3.0
-        version: 3.3.0
       socket.io:
         specifier: ^4.8.1
         version: 4.8.1
@@ -183,6 +177,9 @@ importers:
       exceljs:
         specifier: ^4.4.0
         version: 4.4.0
+      express-useragent:
+        specifier: ^1.0.15
+        version: 1.0.15
       googleapis:
         specifier: ^146.0.0
         version: 146.0.0
@@ -192,6 +189,9 @@ importers:
       querystring:
         specifier: ^0.2.1
         version: 0.2.1
+      request-ip:
+        specifier: ^3.3.0
+        version: 3.3.0
       sharp:
         specifier: ^0.34.1
         version: 0.34.1
