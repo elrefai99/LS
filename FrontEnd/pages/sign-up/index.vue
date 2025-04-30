@@ -22,7 +22,6 @@ const handleSubmit = async (event: Event) => {
           // Handle successful login here
      } else if(response.status === 400){
           console.log("Login failed");
-          // Handle login failure here
      }
 };
 </script>
