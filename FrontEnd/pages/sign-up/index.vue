@@ -17,9 +17,6 @@ const handleSubmit = async (event: Event) => {
      console.log("data", response.data);
      if (response.status === 200) {
           console.log("Login successful", response);
-          const token = Cookies.get('__ssdt');
-      console.log('Cookie value:', token);
-          // Handle successful login here
      } else if(response.status === 400){
           console.log("Login failed");
      }

@@ -37,7 +37,6 @@ export const LoginController = [
                const refresh = refreshToken(cUser?._id);
                // user.refreshToken = refresh;
                // res.cookie()
-               console.log("refresh", token, cUser?._id, cUser?.tokenVersion)
                res.cookie("__ssdt", refresh, { httpOnly: process.env.NODE_ENV === 'production', secure: process.env.NODE_ENV === 'production', sameSite: "lax", maxAge: 1000 * 60 * 60 * 24 * 7, }); // refresh token with 7 days expiration
                res.cookie("__srmt", token, { httpOnly: process.env.NODE_ENV === 'production', secure: process.env.NODE_ENV === 'production', sameSite: "lax", maxAge: 1000 * 60 * 30 }); // access token with 30 minutes expiration
 

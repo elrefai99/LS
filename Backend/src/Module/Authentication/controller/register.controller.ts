@@ -45,8 +45,8 @@ export const registerController = [
                user.refreshToken = refresh;
                await user.save();
                // res.cookie()
-               res.cookie("__ssdt", refresh, { httpOnly: true, secure: true, sameSite: "none", maxAge: 1000 * 60 * 60 * 24 * 7, }); // refresh token with 7 days expiration
-               res.cookie("__srmt", token, { httpOnly: true, secure: true, sameSite: "none", maxAge: 1000 * 60 * 30 }); // access token with 30 minutes expiration
+               res.cookie("__ssdt", refresh, { httpOnly: process.env.NODE_ENV === 'production', secure: process.env.NODE_ENV === 'production', sameSite: "lax", maxAge: 1000 * 60 * 60 * 24 * 7, }); // refresh token with 7 days expiration
+               res.cookie("__srmt", token, { httpOnly: process.env.NODE_ENV === 'production', secure: process.env.NODE_ENV === 'production', sameSite: "lax", maxAge: 1000 * 60 * 30 }); // access token with 30 minutes expiration
 
                res.status(201).json({ code: 201, status: "Created", message: "User created successfully" })
           }
