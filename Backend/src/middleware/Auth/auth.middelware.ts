@@ -39,7 +39,7 @@ export const isAuthenticationStatus = async (req: RequestAuthentication | any, _
         notification: 0,
         friends: 0,
       });
-      console.log(user?.tokenVersion === decoded.vToken, user?.tokenVersion, decoded.vToken)
+
       if (user && user?.tokenVersion === decoded?.vToken) {
         req.user = user;
         next();
