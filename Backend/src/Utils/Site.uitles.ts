@@ -8,7 +8,7 @@ import requestIp from "request-ip";
 import { limiter } from "./Guards/limitRequest/site.limit";
 
 export default (app: Application) => {
-  const allowedOrigins = ["http://localhost:3000"];
+  const allowedOrigins = ["http://localhost:3000", "http://127.0.0.1:5500"];
   const corsOptions = {
     origin: (origin: any, callback: any) => {
       if (allowedOrigins.includes(origin) || !origin) {
