@@ -3,10 +3,12 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import helmet from "helmet";
+import useragent from "express-useragent";
+import requestIp from "request-ip";
 import { limiter } from "./Guards/limitRequest/site.limit";
 
 export default (app: Application) => {
-  const allowedOrigins = ["http://localhost:3000"];
+  const allowedOrigins = ["http://localhost:3000", "http://127.0.0.1:5500"];
   const corsOptions = {
     origin: (origin: any, callback: any) => {
       if (allowedOrigins.includes(origin) || !origin) {
@@ -34,5 +36,12 @@ export default (app: Application) => {
   app.use(cookieParser());
   app.use(morgan(process.env.NODE_ENV === "development" ? "dev" : "combined"));
   app.set("trust proxy", true);
+  app.use(requestIp.mw());
+  app.use(useragent.express());
+  app.use(async (req: any, _res, next) => {
+    const clientIP = req.headers["cf-connecting-ip"] || req.headers["x-real-ip"] || req.headers["x-forwarded-for"] || req.socket.remoteAddress || "";
+    req.clientIP = clientIP;
+    next();
+  });
   app.use(limiter);
 };

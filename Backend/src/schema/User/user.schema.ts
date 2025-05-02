@@ -57,7 +57,7 @@ export const userSchema = new Schema<IUser>({
      },
      status: {
           type: String,
-          enum: ['active', 'deleted', 'pending', 'blocked', 'ban'],
+          enum: ['active', 'deleted', 'pending', 'blocked', 'ban', 'disable'],
           default: 'active',
      },
      lastSeen: {
@@ -80,6 +80,10 @@ export const userSchema = new Schema<IUser>({
           type: String,
           default: "",
      },
+     tokenVersion: {
+          type: Number,
+          default: 0
+     }
 }, {
      timestamps: true,
      autoIndex: true,
